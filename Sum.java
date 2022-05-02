@@ -1,3 +1,7 @@
+/*Ввести целые числа как аргументы командной строки,
+ *подсчитать их сумму (произведение)
+ *и вывести результат на консоль.*/
+
 import java.util.*;
 
 class MultiSum{
@@ -23,9 +27,9 @@ class MultiSum{
 
 public class Sum {
 	public static void main (String[] args) {
-		MultiSum num = new MultiSum();
-		num.sumArgs(args);
-		num.multiArgs(args);
+		MultiSum multiSum = new MultiSum();
+		multiSum.sumArgs(args);
+		multiSum.multiArgs(args);
 		}
 	}
 

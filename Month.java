@@ -1,3 +1,7 @@
+/*Ввести число от 1 до 12.
+ *Вывести на консоль название месяца, соответствующего данному числу.
+ *Осуществить проверку корректности ввода чисел.*/
+
 import java.util.*;
 
 class Year{
@@ -15,10 +19,10 @@ class Year{
 
 public class Month {
 	public static void main (String[] args) {
-		Year num = new Year();
+		Year year = new Year();
 		Scanner scanner = new Scanner(System.in);
 		System.out.println ("Enter the number of the month: ");
 		int monthNumber = scanner.nextInt();
-		num.PrintMonth(monthNumber);
+		year.PrintMonth(monthNumber);
 	}
 }

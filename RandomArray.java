@@ -1,3 +1,6 @@
+/*Вывести заданное количество случайных чисел
+ *с переходом и без перехода на новую строку*/
+
 import java.util.*;
 
 class ArraySetUp {
@@ -37,11 +40,11 @@ class ArraySetUp {
 
 public class RandomArray {	
 	public static void main (String[] args) {
-		ArraySetUp num = new ArraySetUp();
-		num.setArrayLenght();
-		num.fillArray(num.arrayLenght);
-		num.showArray();
-		num.showArrayLn();
+		ArraySetUp arraySetup = new ArraySetUp();
+		arraySetup.setArrayLenght();
+		arraySetup.fillArray(arraySetup.arrayLenght);
+		arraySetup.showArray();
+		arraySetup.showArrayLn();
 	}
 }
 
