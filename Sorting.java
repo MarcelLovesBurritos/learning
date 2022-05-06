@@ -34,17 +34,13 @@ public class Sorting {
 	
 	public void recBubbleSort (int[] array){ // 1.1 RecBubble
 		int temp;
-		boolean sorted = true;
 		for (int i = 0; i < array.length - 1; i++){
 			if (array[i] > array[i+1]){
 				temp = array[i];
 				array[i] = array[i+1];
 				array[i+1] = temp;
-				sorted = false;
+				recBubbleSort(array);
 			}
-		}
-		if (sorted == false){
-			recBubbleSort(array);
 		}
 	}
 	
@@ -188,8 +184,8 @@ public class Sorting {
 		int[] array = {4, 8, 3, 7, 5, 9, 0, 1, 2, 6};
 		Sorting sorting = new Sorting();
 		//sorting.bubbleSort(array);
-		/*sorting.recBubbleSort(array);
-		System.out.println ("Array sorted by Recursive Bubble: " + Arrays.toString(array));*/
+		sorting.recBubbleSort(array);
+		System.out.println ("Array sorted by Recursive Bubble: " + Arrays.toString(array));
 		
 		//sorting.cocktailSort(array);
 		/*int left = 0;
@@ -206,10 +202,10 @@ public class Sorting {
 		
 		//sorting.shellSort(array);
 		
-		int low = 0;
+		/*int low = 0;
 		int high = array.length - 1;
 		sorting.quickSort(array, low, high);
-		System.out.println ("Array sorted by QuickSort: " + Arrays.toString(array));
+		System.out.println ("Array sorted by QuickSort: " + Arrays.toString(array));*/
 	}
 }
 
