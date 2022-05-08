@@ -8,7 +8,7 @@
  * 4. Selection
  * 5. Shell
  * 6. Quick Sort
- * 7. 
+ * 7. Merge
  * 8. */
 
 import java.util.*;
@@ -177,15 +177,63 @@ public class Sorting {
 		array[counter] = temp;
 		quickSort(array, low, counter-1);
 		quickSort(array, counter+1, high);
-	}	
+	}
+	
+	public void mergeSort (int[] array, int low, int high){ // 7. Merge Sort (split)
+		if (low >= high){
+			return;
+		}
+		int mid = (low+high) / 2;
+		mergeSort(array, low, mid);
+		mergeSort(array, mid+1, high);
+		merge(array, low, mid, high);
+	}
+	
+	public void merge (int[] array, int low, int mid, int high){ // 7. Merge Sort (merge)
+		int leftArrayLength = mid - low + 1;
+		int rightArrayLength = high - mid;
+		
+		int[] leftArray = new int [leftArrayLength];
+		int[] rightArray = new int [rightArrayLength];
+		
+		for (int i = 0; i < leftArrayLength; i++){
+			leftArray[i] = array[low+i];
+		}
+		for (int i = 0; i < rightArrayLength; i++){
+			rightArray[i] = array[mid+i+1];
+		}
+		
+		int leftID = 0;
+		int rightID = 0;
+		for (int i = low; i < high+1; i++){
+			if (leftID < leftArrayLength && rightID < rightArrayLength){
+				if (leftArray[leftID] < rightArray[rightID]){
+					array[i] = leftArray[leftID];
+					leftID++;
+				}
+				else {
+					array[i] = rightArray[rightID];
+					rightID++;
+				}
+			}
+			else if (leftID < leftArrayLength){
+				array[i] = leftArray[leftID];
+				leftID++;
+			}
+			else if (rightID < rightArrayLength){
+				array[i] = rightArray[rightID];
+				rightID++;
+			}
+		}
+	}
 	
 	
 	public static void main (String[] args) {
 		int[] array = {4, 8, 3, 7, 5, 9, 0, 1, 2, 6};
 		Sorting sorting = new Sorting();
 		//sorting.bubbleSort(array);
-		sorting.recBubbleSort(array);
-		System.out.println ("Array sorted by Recursive Bubble: " + Arrays.toString(array));
+		/*sorting.recBubbleSort(array);
+		System.out.println ("Array sorted by Recursive Bubble: " + Arrays.toString(array));*/
 		
 		//sorting.cocktailSort(array);
 		/*int left = 0;
@@ -206,6 +254,11 @@ public class Sorting {
 		int high = array.length - 1;
 		sorting.quickSort(array, low, high);
 		System.out.println ("Array sorted by QuickSort: " + Arrays.toString(array));*/
+		
+		/*int low = 0;
+		int high = array.length-1;
+		sorting.mergeSort(array, low, high);
+		System.out.println ("Array sorted by MergeSort: " + Arrays.toString(array));*/
 	}
 }
 
