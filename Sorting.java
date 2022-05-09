@@ -9,7 +9,7 @@
  * 5. Shell
  * 6. Quick Sort
  * 7. Merge
- * 8. */
+ * 8. Heap*/
 
 import java.util.*;
 
@@ -72,6 +72,7 @@ public class Sorting {
 	
 	public void recCocktailSort (int[] array, int left, int right){ // 2.1 RecCocktail
 		int temp;
+		if (left >= right) return;
 		for (int i = 0; i < right; i++){
 			if (array[i] > array[i+1]){
 				temp = array[i];
@@ -88,9 +89,7 @@ public class Sorting {
 			}
 		}
 		left++;
-		if (left < right){
-			recCocktailSort (array, left, right);
-		}
+		recCocktailSort (array, left, right);
 	}
 	
 	public void insertionSort (int[] array){ // 3. Insertion
@@ -107,6 +106,7 @@ public class Sorting {
 	}
 	
 	public void recInsertionSort (int[] array, int i){ // 3. RecInsertion
+		if (i >= array.length) return;
 		int temp = array[i];
 		int j = i - 1;
 		while (j >= 0 && temp < array[j]){
@@ -115,9 +115,7 @@ public class Sorting {
 		}
 		array[j+1] = temp;
 		i++;
-		if (i < array.length){
-			recInsertionSort(array, i);
-		}
+		recInsertionSort(array, i);
 	}
 	
 	public void selectionSort (int[] array){ // 4. Selection
@@ -227,6 +225,25 @@ public class Sorting {
 		}
 	}
 	
+	public void heapSort (int[] array, int length, int i){ // 8. Heap Sort
+		int firstChild = 2*i + 1;
+		int secondChild = 2*i + 2;
+		int temp;
+		int root = i;
+		if (firstChild < length && array[firstChild] > array[root]){
+			root = firstChild;
+		}
+		if (secondChild < length - 1 && array[secondChild] > array[root]){
+			root = secondChild;
+		}
+		if (root != i){
+			temp = array[root];
+			array[root] = array[i];
+			array[i] = temp;
+			heapSort(array, length, root);
+		}
+	}
+	
 	
 	public static void main (String[] args) {
 		int[] array = {4, 8, 3, 7, 5, 9, 0, 1, 2, 6};
@@ -259,6 +276,18 @@ public class Sorting {
 		int high = array.length-1;
 		sorting.mergeSort(array, low, high);
 		System.out.println ("Array sorted by MergeSort: " + Arrays.toString(array));*/
+		
+		int length = array.length;
+		for (int i = length/2 - 1; i >= 0; i--){
+			sorting.heapSort(array, length, i);
+		}
+		for (int i = length - 1; i >= 0; i--){
+			int temp = array[0];
+			array[0] = array[i];
+			array[i] = temp;
+			sorting.heapSort(array, i, 0);
+		}
+		System.out.println ("Array sorted by HeapSort: " + Arrays.toString(array));
 	}
 }
 
